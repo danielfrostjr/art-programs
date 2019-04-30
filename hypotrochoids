@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import math
+
+
+def hypo(inner, outer, distance, theta):
+    inner = float(inner)
+    outer = float(outer)
+    x = []
+    y = []
+    for theta in range(theta):
+        theta = float(theta)
+        theta = theta / 100
+        x.append((outer-inner)*math.cos(theta) + distance*math.cos(
+                (outer-inner)/inner*theta))
+        y.append((outer-inner)*math.sin(theta) - distance*math.sin(
+                (outer-inner)/inner*theta))
+    line = plt.plot(x,y)
+    red_patch = mpatches.Patch(color='blue',
+        label=','.join([str(inner),str(outer),str(distance),str(theta*100 + 1)]))
+    plt.legend(handles=[red_patch])
+    plt.show()
+
+# possible presets
+# hypo(inner=2.41,outer=3,distance=1,theta=100000)
+# hypo(inner=2.85,outer=3,distance=0.5,theta=100000)
+# hypo(inner=3,outer=5.5,distance=0.5,theta=100000)
+# hypo(inner=4,outer=7.1,distance=0.5,theta=100000)
+# hypo(inner=5,outer=7,distance=1,theta=100000)
